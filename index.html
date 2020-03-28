@@ -48,7 +48,7 @@
         this.arrChart[i].radian = this.arrChart[i].degree * Math.PI / 180;
       }
 
-      // toạ độ vẽ label cánh hình tròn 20 px
+      // toạ độ vẽ label cách hình tròn 20 px
       this.xPosLabel = this.origin.x + this.radius + 20;
       this.yPosLabel = this.origin.y - this.radius + 20;
     };
@@ -67,12 +67,13 @@
 
         // bắt đầu vẽ đối tượng pie chart
         context.beginPath();
-        // Lùi về tâm điểm sau mỗi lần vẽ
+        // Lùi về tâm sau mỗi lần vẽ
         context.moveTo(this.origin.x, this.origin.y);
-        // Vẽ hình tròn thành nhiều bán kính
+        // Vẽ hình tròn thành nhiều nhiều phần (pie)
         context.arc(this.origin.x, this.origin.y, this.radius, beginAngle,endAngle);
         context.fillStyle = this.arrChart[i].color;
         context.fill();
+        // bắt đầu vẽ label
         context.beginPath();
         context.rect(this.xPosLabel + 10, this.yPosLabel + (i * 20), this.edge, this.edge);
         context.fillStyle = this.arrChart[i].color;
@@ -89,6 +90,7 @@
     }
   }
 
+  // Dữ liệu truyền vào pie chart
   var arrValue = [
     {
       title : 'Jan',
@@ -117,10 +119,14 @@
     },
   ];
 
+  // thiết lâp canvas
   var canvasElement = document.getElementById("frame_canvas");
   var ctx = canvasElement.getContext("2d");
+  // Tạo Point tâm  đường tròn
   var originPoint = new Point(150, 150);
+  // Thiết lập Pie chart
   var pieChart = new PieChart(originPoint, 120, arrValue);
+  Vẽ Pie chart
   pieChart.draw(ctx);
 
 </script>
